@@ -1,11 +1,3 @@
-export const navLinks = [
-  { href: "#", text: "Examples" },
-  { href: "#", text: "Form Generator" },
-  { href: "#", text: "Integrations" },
-  { href: "#", text: "Docs" },
-  { href: "#", text: "Pricing" },
-];
-
 export const productLinks = [
   { href: "#", text: "Frequently Asked Questions" },
   { href: "#", text: "Pricing" },
