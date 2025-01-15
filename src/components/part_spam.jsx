@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import image from '../assets/asset_29.png';
 
 const Spamtext = () => {
   return (
@@ -11,10 +12,10 @@ const Spamtext = () => {
 const Title = () => {
   return (
     <div style={{ fontSize: "3rem", lineHeight: "1.2", color: "#0a0a23" }}>
-      Le meilleur de sa catégorie
+      Best in class
       <br />
       <span style={{ display: "flex", alignItems: "center" }}>
-        courrier indésirable{" "}
+        span{" "}
         <span
           style={{
             display: "inline-flex",
@@ -38,7 +39,6 @@ const Title = () => {
   );
 };
 
-// Description principale
 const Description = () => {
   return (
     <div
@@ -47,11 +47,12 @@ const Description = () => {
         lineHeight: "1.5",
         color: "#0a0a23",
         marginTop: "40px",
+        marginLeft:"40px"
       }}
     >
-      Nous traitons les envois de spam et gardons votre boîte de réception
+      We handle spam submissions and keep your inbox
       <br />
-      en sécurité avec un taux de précision de 98,6 %.
+      safe and sound with the accuracy rate of 98.6%
     </div>
   );
 };
@@ -75,61 +76,60 @@ const Contenu = () => {
           }}
         >
           <Title />
-          <Description />
+          <Description/>
         </div>
       </div>
     </>
   );
 };
 
-
 const Relevant = () => {
   const faqs = [
     {
       question: "What is formcarry?",
       answer:
-        "Formcarry is a form (or endpoint) that allows you to collect submissions from your own HTML <form> without coding any bacnkend, it basically serves as an form backend. By usiqng formcarry you will instantly access the best features such as getting email notifications for each submission, file uploads, collectint payments with stripe and more",
+        "Formcarry is a form (or endpoint) that allows you to collect submissions from your own HTML <form> without coding any backend, it basically serves as a form backend.",
     },
     {
       question: "Can I upload files from my form to formcarry?",
-      answer:
-        "Yes, you can upload files with minimun effort to formcarry",
+      answer: "Yes, you can upload files with minimal effort to formcarry.",
     },
     {
       question: "Does formcarry block spam submissions?",
-      answer:
-        "Yes, formcarry has advanced in-built systems to block spam submissions",
+      answer: "Yes, formcarry has advanced in-built systems to block spam submissions.",
     },
     {
       question: "What is form endpoint?",
       answer:
-        "A form endpoint or form backend, is a unique URL that will process your forms and performs the neccesary actions to fultil your needings (spams blockin, email sending, file uploads) in a reliable, fast and secure way, Formcarry is the best form endpoint in the industry",
+        "A form endpoint or form backend is a unique URL that processes your forms and performs the necessary actions like spam blocking, email sending, and file uploads.",
     },
     {
       question: "What happens if I exceed the monthly submission limit?",
       answer:
-        "We will save your exceeded submissions in a secure place until the first day of next month, but you can't see them unless you upgrade your plan. By upgrading your plan you can recover those submissions, so don't worry we got your back!",
+        "We will save your exceeded submissions in a secure place until the first day of next month. You can recover them by upgrading your plan.",
     },
     {
-      question: "Does formcarry supports AJAX?",
-      answer:
-        "Yes, formcarry supports AJAX in all packages including the freemium package",
+      question: "Does formcarry support AJAX?",
+      answer: "Yes, formcarry supports AJAX in all packages including the free package.",
     },
   ];
 
-  const [openIndex, setOpenIndex] = useState(null);
+  const [openAccordions, setOpenAccordions] = useState({});
 
   const toggleAccordion = (index) => {
-    setOpenIndex(openIndex === index ? null : index);
+    setOpenAccordions((prev) => ({
+      ...prev,
+      [index]: !prev[index], 
+    }));
   };
 
   return (
     <div style={{ fontFamily: "'Arial', sans-serif", backgroundColor: "#f9fafc", padding: "20px" }}>
-      <div style={{ textAlign: "center", color: "#0070f3", fontSize: "14px", fontWeight: "bold" }}>
+      <div style={{ color: "#0070f3", fontSize: "14px", fontWeight: "bold" }}>
         RELEVANT STUFF BLA BLA
       </div>
 
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", margin: "20px 0" }}>
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "left", margin: "20px 0" }}>
         <div style={{ textAlign: "left" }}>
           <h1 style={{ fontSize: "2.5rem", fontWeight: "bold", color: "#0a0a23", margin: "0" }}>
             Things, <span style={{ color: "#0070f3" }}>?</span> you
@@ -140,9 +140,9 @@ const Relevant = () => {
         </div>
         <div style={{ marginLeft: "20px" }}>
           <img
-            src="https://via.placeholder.com/150"
+            src={image}
             alt="Illustration"
-            style={{ borderRadius: "50%" }}
+            style={{ borderRadius: "50%", height: "120px" }}
           />
         </div>
       </div>
@@ -159,9 +159,9 @@ const Relevant = () => {
               boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
               cursor: "pointer",
             }}
+            onClick={() => toggleAccordion(index)}
           >
             <div
-              onClick={() => toggleAccordion(index)}
               style={{
                 display: "flex",
                 justifyContent: "space-between",
@@ -171,11 +171,11 @@ const Relevant = () => {
               <span style={{ fontSize: "1rem", color: "#0a0a23", fontWeight: "bold" }}>
                 {faq.question}
               </span>
-              <span style={{ fontSize: "1.5rem", color: "#0070f3" }}>
-                {openIndex === index ? "▲" : "▼"}
+              <span style={{ fontSize: "1.5rem", color: "#000" }}>
+                {openAccordions[index] ? "▲" : "▼"}
               </span>
             </div>
-            {openIndex === index && (
+            {openAccordions[index] && (
               <div style={{ marginTop: "10px", fontSize: "0.9rem", color: "#4a4a4a" }}>
                 {faq.answer}
               </div>
@@ -186,6 +186,7 @@ const Relevant = () => {
     </div>
   );
 };
+
 
 const Content = () => {
   return (
